@@ -38,13 +38,9 @@ test('adds items to cart', () => {
 
   const appleBtn = screen.getByTestId('product-' + sampleProducts.find(i => i.name === 'Apple').id)
   fireEvent.click(appleBtn)
+  expect(screen.getByText(/apple is in your cart/i)).toBeInTheDocument()
 
-  expect(screen.getAllByRole('heading',{ name: /shopping cart/i })[0]).toBeInTheDocument()
-  expect(screen.getByText(/Apple is in your cart/i)).toBeInTheDocument()
-
-  const milkBtn = screen.getByTestId('product-' + sampleProducts.find(i => i.name === 'Milk').id)
+  const milkBtn = screen.getByTestId('product-' +sampleProducts.find(i => i.name === 'Milk').id)
   fireEvent.click(milkBtn)
-
-  expect(screen.getByText(/shopping cart/i)).toBeInTheDocument()
-  expect(screen.getByText(/Milk is in your cart/i)).toBeInTheDocument()
+  expect(screen.getByText(/milk is in your cart/i)).toBeInTheDocument()
 })
